@@ -20,17 +20,6 @@ A **dynamic, interactive** quiz application built with **Next.js**, styled with 
 | **Zustand** | Lightweight state management |
 | **JSON** | Static quiz data storage |
 
----
-
-## 📸 Screenshots  
-
-### 🎨 Quiz UI  
-![Quiz UI](https://via.placeholder.com/800x400?text=Quiz+App+Screenshot)  
-
-### 🏆 MCQ Selection  
-![MCQ UI](https://via.placeholder.com/800x400?text=MCQ+Question)  
-
----
 
 ## 📦 Installation  
 
