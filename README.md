@@ -100,16 +100,4 @@ const useFetchData = () => {
 export default useFetchData;
 ```
 
----
-
-## ✨ Contributing  
-
-🚀 Want to improve the quiz app? Feel free to **fork** the repo, make changes, and submit a **pull request**!  
-
----
-
-## 📜 License  
-
-This project is **open-source** and available under the **MIT License**.  
-
 💡 **Built with ❤️ using Next.js, Tailwind CSS & Zustand!** 🚀
