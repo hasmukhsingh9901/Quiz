@@ -1,36 +1,126 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 📚 Quiz App 🎯  
 
-## Getting Started
+A **dynamic, interactive** quiz application built with **Next.js**, styled with **Tailwind CSS**, and managed with **Zustand** for state management. The app uses a `data.json` file to store quiz questions and allows users to attempt **MCQ** and **Fill-up (Integer)** type questions.  
 
-First, run the development server:
+## 🚀 Features  
+✅ **MCQ & Fill-up Questions**: Choose from multiple-choice questions or enter integer values.  
+✅ **Dynamic Question Listing**: Filter questions based on type selection.  
+✅ **State Management with Zustand**: Efficient state handling without unnecessary re-renders.  
+✅ **Tailwind CSS Styling**: Beautiful and responsive design.  
+✅ **Optimized Data Fetching**: Uses memoization (`useMemo`) for efficient data processing.  
 
-```bash
+---
+
+## 🛠️ Tech Stack  
+
+| Tech       | Description                           |
+|------------|---------------------------------------|
+| **Next.js** | React-based framework for SSR & SEO |
+| **Tailwind CSS** | Utility-first CSS framework |
+| **Zustand** | Lightweight state management |
+| **JSON** | Static quiz data storage |
+
+---
+
+## 📸 Screenshots  
+
+### 🎨 Quiz UI  
+![Quiz UI](https://via.placeholder.com/800x400?text=Quiz+App+Screenshot)  
+
+### 🏆 MCQ Selection  
+![MCQ UI](https://via.placeholder.com/800x400?text=MCQ+Question)  
+
+---
+
+## 📦 Installation  
+
+### 1️⃣ Clone the repository  
+```sh
+git clone https://github.com/your-username/quiz-app.git
+cd quiz-app
+```
+
+### 2️⃣ Install dependencies  
+```sh
+npm install
+# or
+yarn install
+```
+
+### 3️⃣ Run the development server  
+```sh
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+📌 **Open [http://localhost:3000](http://localhost:3000) in your browser** 🚀  
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📂 Folder Structure  
 
-## Learn More
+```
+📦 quiz-app
+ ┣ 📂 public        # Static assets
+ ┣ 📂 src
+ ┃ ┣ 📂 components  # Reusable UI components
+ ┃ ┣ 📂 hooks       # Custom React hooks
+ ┃ ┣ 📂 pages       # Next.js pages
+ ┃ ┣ 📂 store       # Zustand store
+ ┃ ┣ 📜 data.json   # Quiz questions
+ ┣ 📜 README.md
+ ┣ 📜 package.json
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🔥 Code Overview  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 📌 Zustand Store (`store/useQuizStore.js`)  
+```js
+import { create } from "zustand";
 
-## Deploy on Vercel
+const useQuizStore = create((set) => ({
+  selectedType: "MCQ",
+  setSelectedType: (type) => set({ selectedType: type }),
+}));
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+export default useQuizStore;
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 📌 Fetching Data (`hooks/useFetchData.js`)  
+```js
+import { useMemo } from "react";
+import data from "@/constants/data.json";
+
+const useFetchData = () => {
+  const refineData = useMemo(() => {
+    return data.map((item) => ({
+      id: item.id,
+      type: item.type,
+      question: item.question,
+      answers: item.answers || [],
+    }));
+  }, []);
+
+  const isMCQ = (question) => question.type.toLowerCase() === "mcq";
+  return { refineData, isMCQ };
+};
+
+export default useFetchData;
+```
+
+---
+
+## ✨ Contributing  
+
+🚀 Want to improve the quiz app? Feel free to **fork** the repo, make changes, and submit a **pull request**!  
+
+---
+
+## 📜 License  
+
+This project is **open-source** and available under the **MIT License**.  
+
+💡 **Built with ❤️ using Next.js, Tailwind CSS & Zustand!** 🚀
